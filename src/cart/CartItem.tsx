@@ -1,7 +1,14 @@
 import { formatCurrency } from '../utils/helpers';
-import UpdateItemQuantity from './UpdateItemQuantity';
+import { UpdateItemQuantity } from './UpdateItemQuantity';
 
-function CartItem({ pizza }) {
+export type PizzaType = {
+  pizzaId: number;
+  name: string;
+  quantity: number;
+  totalPrice: number;
+};
+
+export function CartItem({ pizza }: Record<'pizza', PizzaType>) {
   const { pizzaId, name, quantity, totalPrice } = pizza;
 
   return (
@@ -17,5 +24,3 @@ function CartItem({ pizza }) {
     </li>
   );
 }
-
-export default CartItem;

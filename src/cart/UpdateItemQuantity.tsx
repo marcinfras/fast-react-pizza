@@ -1,12 +1,17 @@
 import { useDispatch } from 'react-redux';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button/Button';
 import {
   decreasePizzaQuantity,
   deletePizza,
   increasePizzaQuantity,
 } from './cartSlice';
 
-function UpdateItemQuantity({ pizzaId, currentQuantity }) {
+type Props = {
+  pizzaId: number;
+  currentQuantity: number;
+};
+
+export function UpdateItemQuantity({ pizzaId, currentQuantity }: Props) {
   const dispatch = useDispatch();
 
   return (
@@ -39,5 +44,3 @@ function UpdateItemQuantity({ pizzaId, currentQuantity }) {
     </>
   );
 }
-
-export default UpdateItemQuantity;

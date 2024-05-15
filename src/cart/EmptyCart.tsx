@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function EmptyCart() {
+export function EmptyCart() {
   return (
     <div className="px-4 py-5 md:px-5 ">
       <div className="mb-3 md:mb-6">
@@ -12,5 +12,3 @@ function EmptyCart() {
     </div>
   );
 }
-
-export default EmptyCart;

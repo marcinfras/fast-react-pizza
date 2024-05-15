@@ -1,14 +1,14 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function SearchOrder() {
-  const orderRef = useRef();
+export function SearchOrder() {
+  const orderRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const handleNavigate = (e) => {
+  const handleNavigate = (e: React.KeyboardEvent) => {
     if (e.code === 'Enter') {
       e.preventDefault();
-      navigate(`/order/${orderRef.current.value}`);
+      navigate(`/order/${orderRef.current?.value}`);
     }
   };
 
@@ -23,5 +23,3 @@ function SearchOrder() {
     </form>
   );
 }
-
-export default SearchOrder;

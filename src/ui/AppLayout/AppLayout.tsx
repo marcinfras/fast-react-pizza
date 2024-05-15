@@ -1,9 +1,9 @@
 import { Outlet, useNavigation } from 'react-router-dom';
-import Header from './Header';
-import CartOverview from '../cart/CartOverview';
-import Loader from './Loader';
+import { Header } from '../Header/Header';
+import { CartOverview } from '../../cart/CartOverview';
+import { Loader } from '../Loader/Loader';
 
-function AppLayout() {
+export function AppLayout() {
   const navigation = useNavigation();
 
   return (
@@ -17,5 +17,3 @@ function AppLayout() {
     </div>
   );
 }
-
-export default AppLayout;

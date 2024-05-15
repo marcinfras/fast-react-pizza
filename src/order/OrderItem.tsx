@@ -1,8 +1,14 @@
+import { PizzaType } from '../cart/CartItem';
 import { formatCurrency } from '../utils/helpers';
 
-function OrderItem({ pizza, ingredients, isLoadingIng }) {
+type Props = {
+  pizza: PizzaType;
+  ingredients: string[];
+  isLoadingIng: boolean;
+};
+
+export function OrderItem({ pizza, ingredients, isLoadingIng }: Props) {
   const { quantity, name, totalPrice } = pizza;
-  console.log(ingredients);
 
   return (
     <div className="flex flex-col gap-1 px-1 py-2 ">
@@ -20,5 +26,3 @@ function OrderItem({ pizza, ingredients, isLoadingIng }) {
     </div>
   );
 }
-
-export default OrderItem;

@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateName } from './userSlice';
 
-function CreateUser() {
+export function CreateUser() {
   const [name, setName] = useState('');
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     dispatch(updateName(name));
@@ -35,5 +35,3 @@ function CreateUser() {
     </form>
   );
 }
-
-export default CreateUser;
