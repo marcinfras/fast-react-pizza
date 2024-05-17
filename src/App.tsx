@@ -56,11 +56,7 @@
 // export default App;
 
 //TSX Version
-import {
-  LoaderFunction,
-  RouterProvider,
-  createBrowserRouter,
-} from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { loader as menuLoader } from './menu/Menu';
 import { loader as orderLoader } from './order/Order';

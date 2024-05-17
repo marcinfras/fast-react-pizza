@@ -124,6 +124,7 @@ import { EmptyCart } from '../cart/EmptyCart';
 import { useState } from 'react';
 import { createOrder } from '../services/apiRestaurant';
 import { RootState, store } from '../store';
+import { CartItemType } from '../services/apiTypes';
 
 const isValidPhone = (str: string) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -141,7 +142,7 @@ export function NewOrder() {
   const totalCartPrice = useSelector(getTotalCartPrice);
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
-  const errors = useActionData();
+  const errors = useActionData() as ErrorsType;
 
   if (totalCartPrice === 0) return <EmptyCart />;
 
@@ -183,7 +184,7 @@ export function NewOrder() {
             type="checkbox"
             name="priority"
             id="priority"
-            value={withPriority}
+            value={Number(withPriority)}
             onChange={() => setWithPriority((state) => !state)}
             className="block h-6 w-6 accent-yellow-400 focus:ring focus:ring-yellow-300 focus:ring-offset-2"
           />
@@ -212,13 +213,15 @@ type FormDataType = {
   priority: string;
 };
 
+type ErrorsType = {
+  phone: string;
+};
+
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
-  console.log(formData.values());
-  const data = Object.fromEntries(formData);
-  const errors = {};
-
-  console.log(data);
+  // console.log(formData.values());
+  const data = Object.fromEntries(formData) as FormDataType;
+  const errors: ErrorsType = { phone: '' };
 
   if (!isValidPhone(data.phone)) {
     errors.phone =
@@ -229,7 +232,7 @@ export async function action({ request }: { request: Request }) {
   const order = {
     ...data,
     priority: data.priority === 'true',
-    cart: JSON.parse(data.cart),
+    cart: JSON.parse(data.cart) as CartItemType[],
   };
 
   const newOrder = await createOrder(order);

@@ -7,7 +7,7 @@ export type MenuItemType = {
   unitPrice: number;
 };
 
-type CartItemType = {
+export type CartItemType = {
   addIngredients?: string[];
   name: string;
   pizzaId: number;
